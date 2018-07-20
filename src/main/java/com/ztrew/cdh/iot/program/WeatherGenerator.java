@@ -39,6 +39,12 @@ public class WeatherGenerator implements Program {
     @Parameter(names = {"--resolution", "-r"}, description = "The resolution of weather data to generate.", required = false)
     private Resolution resolution = Resolution.HOUR;
 
+    @Parameter(names = {"--bootstrap-servers", "-b"}, description = "The Kafka broker list.", required = true)
+    private String bootstrapServers;
+
+    @Parameter(names = {"--topic", "-t"}, description = "The Kafka topic to publish Avro messages to.", required = true)
+    private String topic;
+
     public WeatherGenerator() {}
 
     public void run() {
@@ -51,8 +57,9 @@ public class WeatherGenerator implements Program {
 
         logger.info("S3 Root Bucket: " + s3RootBucket);
         logger.info("Resolution: " + resolution);
-
-
+        logger.info("Bootstrap Servers: [" + bootstrapServers +  "]");
+        logger.info("Topic: " + topic);
+        
     }
 
 }
